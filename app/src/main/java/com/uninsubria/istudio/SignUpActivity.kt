@@ -16,7 +16,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_layout)
         auth = FirebaseAuth.getInstance()
-    }
+
 
     fun signup(view: View) {
         val email = regEmail.text.toString()
@@ -35,10 +35,15 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun goToLogin(view: View) {
+        signUpButton.setOnClickListener(){
+            signup(signUpButton)
+        }
+
         tvLogin.setOnClickListener() {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
+
 }
