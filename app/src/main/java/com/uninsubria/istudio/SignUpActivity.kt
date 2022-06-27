@@ -34,9 +34,11 @@ class SignUpActivity : AppCompatActivity() {
 
         }
     }
-    fun goToLogin (view:View){
-        tvLogin.setOnClickListener(){
-            val intent=Intent(this, SignUpActivity::class.java)
+
+    fun goToLogin(view: View) {
+        tvLogin.setOnClickListener() {
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+        }
     }
 }
