@@ -52,7 +52,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:onClick="goToRegister"
         android:text="Register Here"
         android:textColor="#FF0000FF"
         android:layout_gravity="center"
