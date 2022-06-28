@@ -21,19 +21,23 @@ class LoginActivity: AppCompatActivity() {
         fun login(view: View) {
             val email = etemail.text.toString()
             val password = etpassword.text.toString()
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Log.d(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        this, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            if (!email.isEmpty() && !password.isEmpty()) {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "signInWithEmail:success")
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Log.d(TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            this, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
+            } else {
+                Toast.makeText(this,"Please fill up the Credentials :|", Toast.LENGTH_SHORT).show()
             }
         }
 

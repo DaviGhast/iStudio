@@ -21,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     fun signup(view: View) {
         val email = regEmail.text.toString()
         val password = regPassword.text.toString()
+        if (!email.isEmpty() && !password.isEmpty()){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Successfully registered :)", Toast.LENGTH_LONG).show()
@@ -32,6 +33,9 @@ class SignUpActivity : AppCompatActivity() {
                     .show()
             }
 
+        }
+    }else{
+            Toast.makeText(this,"Please fill up the Credentials :|", Toast.LENGTH_SHORT).show()
         }
     }
 
