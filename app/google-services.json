@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "920932274956",
+    "project_id": "istudio-658b2",
+    "storage_bucket": "istudio-658b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920932274956:android:1471b455b961f48655ef29",
+        "android_client_info": {
+          "package_name": "com.uninsubria.istudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920932274956-542i54e0d07uu6vo17tfsq1vm22ictoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXjteiy7fOLMv1pqvAORgXaWMl5IIDrds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920932274956-542i54e0d07uu6vo17tfsq1vm22ictoa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
