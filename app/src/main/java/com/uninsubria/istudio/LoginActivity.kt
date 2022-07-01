@@ -26,6 +26,7 @@ class LoginActivity: AppCompatActivity() {
                     if (task.isSuccessful) {
                         Log.d(TAG, "signInWithEmail:success")
                         val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("loginemail",email)
                         startActivity(intent)
                         finish()
                     } else {

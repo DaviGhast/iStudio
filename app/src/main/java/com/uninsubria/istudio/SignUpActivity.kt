@@ -26,6 +26,7 @@ class SignUpActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 Toast.makeText(this, "Successfully registered :)", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("signupemail",email)
                 startActivity(intent)
                 finish()
             } else {
