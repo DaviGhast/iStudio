@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IStudio">
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name=".ui.login.LoginActivity"
             android:configChanges="orientation|keyboard|screenSize"
             android:screenOrientation="portrait"
             android:exported="true">
@@ -21,7 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.register.RegisterActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.HomeActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

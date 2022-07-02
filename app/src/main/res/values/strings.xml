@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">iStudio</string>
+
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_leaderboard">Leaderboard</string>
+    <string name="menu_store">Store</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_chat">Chat</string>
 </resources>

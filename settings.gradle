@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "iStudio"
 include ':app'
+include ':lib'
+include ':SmoothBottomBar'

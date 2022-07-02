@@ -14,7 +14,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.uninsubria.istudio.MainActivity
+import com.uninsubria.istudio.ui.HomeActivity
+import com.uninsubria.istudio.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.loading_view
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -37,10 +41,16 @@ class LoginActivity : AppCompatActivity() {
             performLogin()
         }
 
-        back_to_register_textview.setOnClickListener {
-            finish()
-            overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left)
+        register.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.enter, R.anim.exit)
         }
+
+        //back_to_register_textview.setOnClickListener {
+            //finish()
+            //overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left)
+        //}
     }
 
     override fun onBackPressed() {
@@ -61,23 +71,15 @@ class LoginActivity : AppCompatActivity() {
             return;
         }
 
-        back_to_register_textview.visibility = View.GONE
+        register.visibility = View.GONE
         loading_view.visibility = View.VISIBLE
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Log.d(TAG, "Successfully logged in: ${it.result!!.user?.uid}")
+                if (!it.isSuccessful) return@addOnCompleteListener
+                Log.d(TAG, "Successfully logged in: ${it.result!!.user?.uid}")
 
-                } else {
-                    Log.d(ContentValues.TAG, "signInWithEmail:failure", it.exception)
-                    Toast.makeText(
-                        this, "Authentication failed: ${it.exception!!.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                //val intent = Intent(this, LatestMessagesActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 overridePendingTransition(R.anim.enter, R.anim.exit)
@@ -85,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
 
-                back_to_register_textview.visibility = View.VISIBLE
+                register.visibility = View.VISIBLE
                 loading_view.visibility = View.GONE
             }
     }
