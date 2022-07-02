@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import com.uninsubria.istudio.LoginActivity
+import com.uninsubria.istudio.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
@@ -30,6 +30,13 @@ class RegisterActivity : AppCompatActivity() {
 
     // the uri address selected by the user
     private var selectedPhotoUri: Uri? = null
+
+    // for simplicity the auth object will be associated with the FireBaseAuth instance
+    private lateinit var auth: FirebaseAuth
+    // for simplicity the auth object will be associated with the FirebaseStorage instance
+    private lateinit var storege: FirebaseStorage
+    // for simplicity the auth object will be associated with the FirebaseStorage instance
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
