@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.uninsubria.istudio.MainActivity
+import com.uninsubria.istudio.messages.LatestMessagesActivity
 import com.uninsubria.istudio.ui.HomeActivity
 import com.uninsubria.istudio.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -79,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Log.d(TAG, "Successfully logged in: ${it.result!!.user?.uid}")
 
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 overridePendingTransition(R.anim.enter, R.anim.exit)

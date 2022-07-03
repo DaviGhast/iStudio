@@ -27,7 +27,14 @@
         android:id="@+id/third_fragment"
         android:name="com.uninsubria.istudio.ui.fragments.ThirdFragment"
         android:label="Chat"
-        tools:layout="@layout/fragment_third" >
+        tools:layout="@layout/activity_latest_messages" >
+        <action
+            android:id="@+id/new_message_fab"
+            app:destination="@id/chat_log"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_thirdFragment_to_fourthFragment"
             app:destination="@id/fourth_fragment" />
@@ -37,4 +44,9 @@
         android:name="com.uninsubria.istudio.ui.fragments.FourthFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_fourth" />
+    <fragment
+        android:id="@+id/chat_log"
+        android:name="com.uninsubria.istudio.messages.ChatLogActivity"
+        android:label="Profile"
+        tools:layout="@layout/activity_chat_log" />
 </navigation>
