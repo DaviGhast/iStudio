@@ -70,7 +70,7 @@ class FourthFragment : Fragment(), View.OnClickListener {
             activity?.let{
                 val intent = Intent (it, ChatLogActivity::class.java)
                 val row = item as Profile
-                intent.putExtra(USER_KEY, row.chatPartnerUser)
+                intent.putExtra(USER_KEY, row.user)
                 it.startActivity(intent)
             }
             //val intent = Intent(this, ChatLogActivity::class.java)

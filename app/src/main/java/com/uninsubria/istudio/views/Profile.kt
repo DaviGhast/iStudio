@@ -14,15 +14,17 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.uninsubria.istudio.ui.HomeActivity
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.latest_message_row.view.*
 import kotlinx.android.synthetic.main.profile.view.*
 
 
 class Profile(val chatMessage: ChatMessage, val context: Context) : Item<ViewHolder>() {
 
-    var chatPartnerUser: User? = null
+    var user: User? = null
 
     override fun getLayout(): Int {
         return R.layout.profile
@@ -30,33 +32,28 @@ class Profile(val chatMessage: ChatMessage, val context: Context) : Item<ViewHol
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 
-        val chatPartnerId: String
-        if (chatMessage.fromId == FirebaseAuth.getInstance().uid) {
-            chatPartnerId = chatMessage.toId
-        } else {
-            chatPartnerId = chatMessage.fromId
-        }
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$chatPartnerId")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
 
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                chatPartnerUser = p0.getValue(User::class.java)
-                viewHolder.itemView.username_textview.text = chatPartnerUser?.name
+                user = p0.getValue(User::class.java)
+                viewHolder.itemView.username_textview.text = user?.name
 
-                if (!chatPartnerUser?.profileImageUrl?.isEmpty()!!) {
+                if (!user?.profileImageUrl?.isEmpty()!!) {
                     val requestOptions = RequestOptions().placeholder(R.drawable.no_image2)
 
                     Glide.with(viewHolder.itemView.imageview_profile.context)
-                        .load(chatPartnerUser?.profileImageUrl)
+                        .load(user?.profileImageUrl)
                         .apply(requestOptions)
                         .into(viewHolder.itemView.imageview_profile)
 
                     viewHolder.itemView.imageview_profile.setOnClickListener {
-                        BigImageDialog.newInstance(chatPartnerUser?.profileImageUrl!!).show((context as Activity).fragmentManager
+                        BigImageDialog.newInstance(user?.profileImageUrl!!).show((context as Activity).fragmentManager
                             , "")
                     }
 
