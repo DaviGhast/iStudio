@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_latest_messages.*
+import kotlinx.android.synthetic.main.fragment_latest_messages.*
 
 
 class LatestMessagesActivity : AppCompatActivity() {
@@ -33,7 +33,7 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_latest_messages)
+        setContentView(R.layout.fragment_latest_messages)
         verifyUserIsLoggedIn()
 
         recyclerview_latest_messages.adapter = adapter

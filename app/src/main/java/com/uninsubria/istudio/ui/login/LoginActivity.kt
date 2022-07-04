@@ -1,6 +1,5 @@
 package com.uninsubria.istudio.ui.login
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,14 +12,10 @@ import com.uninsubria.istudio.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.uninsubria.istudio.MainActivity
-import com.uninsubria.istudio.messages.LatestMessagesActivity
-import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.ui.HomeActivity
 import com.uninsubria.istudio.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.loading_view
-import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : AppCompatActivity() {

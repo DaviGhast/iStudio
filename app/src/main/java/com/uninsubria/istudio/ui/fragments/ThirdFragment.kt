@@ -22,7 +22,7 @@ import com.uninsubria.istudio.ui.register.RegisterActivity
 import com.uninsubria.istudio.views.LatestMessageRow
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_latest_messages.*
+import kotlinx.android.synthetic.main.fragment_latest_messages.*
 import kotlinx.android.synthetic.main.fragment_latest_messages.view.*
 
 /**
