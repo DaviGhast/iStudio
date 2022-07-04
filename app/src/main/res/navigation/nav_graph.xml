@@ -28,13 +28,13 @@
         android:name="com.uninsubria.istudio.ui.fragments.ThirdFragment"
         android:label="Chat"
         tools:layout="@layout/activity_latest_messages" >
-        <action
-            android:id="@+id/new_message_fab"
+        <!-- <action
+            android:id="@+id/action_thirdFragment_to_chat_log"
             app:destination="@id/chat_log"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right" /> -->
         <action
             android:id="@+id/action_thirdFragment_to_fourthFragment"
             app:destination="@id/fourth_fragment" />
@@ -44,9 +44,20 @@
         android:name="com.uninsubria.istudio.ui.fragments.FourthFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_fourth" />
-    <fragment
-        android:id="@+id/chat_log"
-        android:name="com.uninsubria.istudio.messages.ChatLogActivity"
-        android:label="Profile"
-        tools:layout="@layout/activity_chat_log" />
+
+    <!-- ChooseRecipientFragment -->
+    <!-- <fragment android:id="@+id/chat_log"
+        android:name="com.uninsubria.istudio.ui.fragments.ChatLogFragment"
+        android:label="fragment_choose_recipient"
+        tools:layout="@layout/fragment_chat_log">
+
+        <action android:id="@+id/action_chooseRecipientFragment_to_specifyAmountFragment"
+            app:destination="@id/chat_log"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            />
+    </fragment> -->
+
 </navigation>

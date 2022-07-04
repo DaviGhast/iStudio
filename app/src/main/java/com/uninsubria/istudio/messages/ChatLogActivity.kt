@@ -2,6 +2,8 @@ package com.uninsubria.istudio.messages
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -48,6 +50,7 @@ class ChatLogActivity : AppCompatActivity() {
             performSendMessage()
         }
     }
+
 
     private fun listenForMessages() {
         swiperefresh.isEnabled = true

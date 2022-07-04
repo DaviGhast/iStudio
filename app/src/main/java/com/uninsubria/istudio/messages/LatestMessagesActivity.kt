@@ -1,15 +1,10 @@
 package com.uninsubria.istudio.messages
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.messages.NewMessageActivity.Companion.USER_KEY
 import com.uninsubria.istudio.ui.register.RegisterActivity
@@ -18,7 +13,6 @@ import com.uninsubria.istudio.models.ChatMessage
 import com.uninsubria.istudio.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.uninsubria.istudio.ui.fragments.ThirdFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_latest_messages.*
@@ -70,7 +64,7 @@ class LatestMessagesActivity : AppCompatActivity() {
     private fun refreshRecyclerViewMessages() {
         adapter.clear()
         latestMessagesMap.values.forEach {
-            adapter.add(LatestMessageRow(it, this))
+            //adapter.add(LatestMessageRow(it, this))
         }
         swiperefresh.isRefreshing = false
     }
