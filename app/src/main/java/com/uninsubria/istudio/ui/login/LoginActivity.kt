@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.uninsubria.istudio.MainActivity
 import com.uninsubria.istudio.messages.LatestMessagesActivity
+import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.ui.HomeActivity
 import com.uninsubria.istudio.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
