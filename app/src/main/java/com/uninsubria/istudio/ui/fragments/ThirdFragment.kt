@@ -3,15 +3,12 @@ package com.uninsubria.istudio.ui.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.uninsubria.istudio.R
@@ -109,7 +106,7 @@ class ThirdFragment : Fragment(), View.OnClickListener {
     private fun refreshRecyclerViewMessages() {
         adapter.clear()
         latestMessagesMap.values.forEach {
-            adapter.add(LatestMessageRow(it, this))
+            adapter.add(LatestMessageRow(it, LatestMessagesActivity()))
         }
         swiperefresh.isRefreshing = false
     }

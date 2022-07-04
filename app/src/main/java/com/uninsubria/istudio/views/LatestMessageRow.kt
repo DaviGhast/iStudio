@@ -14,14 +14,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.uninsubria.istudio.messages.LatestMessagesActivity
-import com.uninsubria.istudio.ui.fragments.ThirdFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 
-class LatestMessageRow(val chatMessage: ChatMessage, val context: ThirdFragment) : Item<ViewHolder>() {
+
+class LatestMessageRow(val chatMessage: ChatMessage, val context: Context) : Item<ViewHolder>() {
 
     var chatPartnerUser: User? = null
 

@@ -1,26 +1,26 @@
 package com.uninsubria.istudio.messages
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.uninsubria.istudio.R
-import com.uninsubria.istudio.models.ChatMessage
-import com.uninsubria.istudio.models.User
-import com.uninsubria.istudio.utils.DateUtils.getFormattedTimeChatLog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.uninsubria.istudio.R
+import com.uninsubria.istudio.models.ChatMessage
+import com.uninsubria.istudio.models.User
+import com.uninsubria.istudio.utils.DateUtils.getFormattedTimeChatLog
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -42,6 +42,15 @@ class ChatLogActivity : AppCompatActivity() {
 
         recyclerview_chat_log.adapter = adapter
 
+        //setSupportActionBar(findViewById(R.id.tool_bar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        //supportActionBar?.setLogo(R.drawable.no_image2)
+
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+
+
         supportActionBar?.title = toUser?.name
 
         listenForMessages()
@@ -50,7 +59,6 @@ class ChatLogActivity : AppCompatActivity() {
             performSendMessage()
         }
     }
-
 
     private fun listenForMessages() {
         swiperefresh.isEnabled = true

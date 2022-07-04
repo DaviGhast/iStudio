@@ -31,7 +31,7 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".messages.LatestMessagesActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".messages.NewMessageActivity"
             android:screenOrientation="portrait">

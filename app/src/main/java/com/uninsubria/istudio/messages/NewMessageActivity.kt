@@ -17,7 +17,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.uninsubria.istudio.ui.fragments.ThirdFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -37,9 +36,17 @@ class NewMessageActivity : AppCompatActivity() {
 
         swiperefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorAccent))
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        //supportActionBar?.setLogo(R.drawable.no_image2)
+
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+
         supportActionBar?.title = "Select User"
 
         fetchUsers()
+
 
         swiperefresh.setOnRefreshListener {
             fetchUsers()
