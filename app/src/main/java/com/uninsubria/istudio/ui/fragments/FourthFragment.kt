@@ -22,6 +22,8 @@ import com.uninsubria.istudio.ui.register.RegisterActivity
 import com.uninsubria.istudio.views.Profile
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_fourth.*
+import kotlinx.android.synthetic.main.fragment_fourth.view.*
 import kotlinx.android.synthetic.main.fragment_latest_messages.*
 import kotlinx.android.synthetic.main.fragment_latest_messages.view.*
 
@@ -48,8 +50,8 @@ class FourthFragment : Fragment(), View.OnClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_fourth, container, false)
 
-        view.recyclerview_latest_messages.layoutManager = LinearLayoutManager(activity)
-        view.recyclerview_latest_messages.adapter = adapter
+        view.recyclerview_fragment_fourth.layoutManager = LinearLayoutManager(activity)
+        view.recyclerview_fragment_fourth.adapter = adapter
 
         return view
     }
@@ -59,9 +61,9 @@ class FourthFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         verifyUserIsLoggedIn()
 
-        //recyclerview_latest_messages.adapter = adapter
+        //recyclerview_fragment_fourth.adapter = adapter
 
-        swiperefresh.setColorSchemeColors(ContextCompat.getColor(context!!, R.color.colorAccent))
+        view.swiperefresh_fragment_fourth.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorAccent))
 
         fetchCurrentUser()
         listenForLatestMessages()
@@ -79,7 +81,7 @@ class FourthFragment : Fragment(), View.OnClickListener {
             //startActivity(intent)
         }
 
-        view.swiperefresh.setOnRefreshListener {
+        view.swiperefresh_fragment_fourth.setOnRefreshListener {
             verifyUserIsLoggedIn()
             fetchCurrentUser()
             listenForLatestMessages()
@@ -98,11 +100,11 @@ class FourthFragment : Fragment(), View.OnClickListener {
         latestMessagesMap.values.forEach {
             adapter.add(Profile(it, LatestMessagesActivity()))
         }
-        swiperefresh.isRefreshing = false
+        view?.swiperefresh_fragment_fourth?.isRefreshing = false
     }
 
     private fun listenForLatestMessages() {
-        swiperefresh.isRefreshing = true
+        view?.swiperefresh_fragment_fourth?.isRefreshing = false
         val fromId = FirebaseAuth.getInstance().uid ?: return
         val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId")
 
@@ -114,7 +116,7 @@ class FourthFragment : Fragment(), View.OnClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d(LatestMessagesActivity.TAG, "has children: " + dataSnapshot.hasChildren())
                 if (!dataSnapshot.hasChildren()) {
-                    swiperefresh.isRefreshing = false
+                    view?.swiperefresh_fragment_fourth?.isRefreshing = false
                 }
             }
 
