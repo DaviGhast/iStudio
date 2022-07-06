@@ -13,6 +13,7 @@ import com.google.firebase.database.*
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.models.ChatMessage
 import com.uninsubria.istudio.models.User
+import com.uninsubria.istudio.ui.fragments.LatestMessagesFragment
 import com.uninsubria.istudio.utils.DateUtils.getFormattedTimeChatLog
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
@@ -95,7 +96,7 @@ class ChatLogActivity : AppCompatActivity() {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 dataSnapshot.getValue(ChatMessage::class.java)?.let {
                     if (it.fromId == FirebaseAuth.getInstance().uid) {
-                        val currentUser = LatestMessagesActivity.currentUser ?: return
+                        val currentUser = LatestMessagesFragment.currentUser ?: return
                         //adapter.add(ChatFromItem(it.text, currentUser, it.timestamp))
                         adapter.add(ChatToItem(it.text, currentUser, it.timestamp))
                     } else {

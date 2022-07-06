@@ -2,7 +2,6 @@ package com.uninsubria.istudio.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.PopupMenu
@@ -18,13 +17,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.databinding.ActivityHomeBinding
-import com.uninsubria.istudio.messages.LatestMessagesActivity
 import com.uninsubria.istudio.messages.NewMessageActivity
-import com.uninsubria.istudio.messages.NewMessageActivity.Companion.USER_KEY
 import com.uninsubria.istudio.models.User
 import com.uninsubria.istudio.ui.fragments.FirstFragment
 import com.uninsubria.istudio.ui.login.LoginActivity
-import com.uninsubria.istudio.ui.register.RegisterActivity
 
 
 class HomeActivity : AppCompatActivity() {

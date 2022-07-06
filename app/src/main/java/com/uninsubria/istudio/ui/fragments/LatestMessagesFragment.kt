@@ -13,24 +13,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.messages.ChatLogActivity
-import com.uninsubria.istudio.messages.LatestMessagesActivity
 import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.messages.NewMessageActivity.Companion.USER_KEY
 import com.uninsubria.istudio.models.ChatMessage
 import com.uninsubria.istudio.models.User
-import com.uninsubria.istudio.ui.register.RegisterActivity
-import com.uninsubria.istudio.views.Profile
+import com.uninsubria.istudio.views.LatestMessageRow
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_fourth.*
-import kotlinx.android.synthetic.main.fragment_fourth.view.*
 import kotlinx.android.synthetic.main.fragment_latest_messages.*
 import kotlinx.android.synthetic.main.fragment_latest_messages.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class FourthFragment : Fragment(), View.OnClickListener {
+class LatestMessagesFragment : Fragment(), View.OnClickListener {
 
 
     lateinit var navController: NavController
@@ -41,17 +37,17 @@ class FourthFragment : Fragment(), View.OnClickListener {
 
     companion object {
         var currentUser: User? = null
-        val TAG = LatestMessagesActivity::class.java.simpleName
+        val TAG = LatestMessagesFragment::class.java.simpleName
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_fourth, container, false)
+        val view = inflater.inflate(R.layout.fragment_latest_messages, container, false)
 
-        view.recyclerview_fragment_fourth.layoutManager = LinearLayoutManager(activity)
-        view.recyclerview_fragment_fourth.adapter = adapter
+        view.recyclerview_latest_messages.layoutManager = LinearLayoutManager(activity)
+        view.recyclerview_latest_messages.adapter = adapter
 
         return view
     }
@@ -59,11 +55,10 @@ class FourthFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        verifyUserIsLoggedIn()
 
-        //recyclerview_fragment_fourth.adapter = adapter
+        //recyclerview_latest_messages.adapter = adapter
 
-        view.swiperefresh_fragment_fourth.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+        swiperefresh.setColorSchemeColors(ContextCompat.getColor(context!!, R.color.colorAccent))
 
         fetchCurrentUser()
         listenForLatestMessages()
@@ -71,18 +66,27 @@ class FourthFragment : Fragment(), View.OnClickListener {
         adapter.setOnItemClickListener { item, _ ->
             activity?.let{
                 val intent = Intent (it, ChatLogActivity::class.java)
-                val row = item as Profile
-                intent.putExtra(USER_KEY, row.user)
+                val row = item as LatestMessageRow
+                intent.putExtra(USER_KEY, row.chatPartnerUser)
                 it.startActivity(intent)
             }
             //val intent = Intent(this, ChatLogActivity::class.java)
-            //val row = item as Profile
+            //val row = item as LatestMessageRow
             //intent.putExtra(USER_KEY, row.chatPartnerUser)
             //startActivity(intent)
         }
 
-        view.swiperefresh_fragment_fourth.setOnRefreshListener {
-            verifyUserIsLoggedIn()
+
+        new_message_fab.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, NewMessageActivity::class.java)
+                it.startActivity(intent)
+            }
+            //val intent = Intent(this, NewMessageActivity::class.java)
+            //startActivity(intent)
+        }
+
+        view.swiperefresh.setOnRefreshListener {
             fetchCurrentUser()
             listenForLatestMessages()
         }
@@ -98,25 +102,25 @@ class FourthFragment : Fragment(), View.OnClickListener {
     private fun refreshRecyclerViewMessages() {
         adapter.clear()
         latestMessagesMap.values.forEach {
-            adapter.add(Profile(it, LatestMessagesActivity()))
+            adapter.add(LatestMessageRow(it, requireContext()))
         }
-        view?.swiperefresh_fragment_fourth?.isRefreshing = false
+        swiperefresh.isRefreshing = false
     }
 
     private fun listenForLatestMessages() {
-        view?.swiperefresh_fragment_fourth?.isRefreshing = false
+        swiperefresh.isRefreshing = true
         val fromId = FirebaseAuth.getInstance().uid ?: return
         val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d(LatestMessagesActivity.TAG, "database error: " + databaseError.message)
+                Log.d(TAG, "database error: " + databaseError.message)
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d(LatestMessagesActivity.TAG, "has children: " + dataSnapshot.hasChildren())
+                Log.d(TAG, "has children: " + dataSnapshot.hasChildren())
                 if (!dataSnapshot.hasChildren()) {
-                    view?.swiperefresh_fragment_fourth?.isRefreshing = false
+                    swiperefresh.isRefreshing = false
                 }
             }
 
@@ -158,24 +162,11 @@ class FourthFragment : Fragment(), View.OnClickListener {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                LatestMessagesActivity.currentUser = dataSnapshot.getValue(User::class.java)
+                currentUser = dataSnapshot.getValue(User::class.java)
             }
 
         })
     }
 
-    private fun verifyUserIsLoggedIn() {
-        val uid = FirebaseAuth.getInstance().uid
-        if (uid == null) {
-            activity?.let{
-                val intent = Intent (it, RegisterActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                it.startActivity(intent)
-            }
-            //val intent = Intent(this, RegisterActivity::class.java)
-            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            //startActivity(intent)
-        }
-    }
 
 }
