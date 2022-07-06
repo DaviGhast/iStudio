@@ -95,10 +95,10 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        if (selectedPhotoUri == null) {
-            Toast.makeText(this, "Please select a photo", Toast.LENGTH_SHORT).show()
-            return
-        }
+        //if (selectedPhotoUri == null) {
+        //    Toast.makeText(this, "Please select a photo", Toast.LENGTH_SHORT).show()
+        //    return
+        //}
 
         already_have_account_text_view.visibility = View.GONE
         loading_view.visibility = View.VISIBLE
@@ -151,7 +151,7 @@ class RegisterActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance("https://istudio-658b2-default-rtdb.europe-west1.firebasedatabase.app").getReference("/users/$uid")
 
         val user = if (profileImageUrl == null) {
-            User(uid, name_edittext_register.text.toString(), null)
+            User(uid, name_edittext_register.text.toString(), "")
         } else {
             User(uid, name_edittext_register.text.toString(), profileImageUrl)
         }
