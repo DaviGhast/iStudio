@@ -20,7 +20,7 @@
         android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:text="This is my message that will wrap into multiple lines and keep going"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/imageview_chat_to_row"
         app:layout_constraintTop_toTopOf="@+id/imageview_chat_to_row"/>
 
