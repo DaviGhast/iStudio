@@ -68,7 +68,8 @@ class SecondFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, PostActivity::class.java)
                 val row = item as PostRow
-                intent.putExtra("USER_KEY", row.chatPartnerUser)
+                intent.putExtra("USER_KEY", row.postCreatorUser)
+                intent.putExtra("POST_KEY", row.postCreatorUser)
                 it.startActivity(intent)
             }
             //val intent = Intent(this, ChatLogActivity::class.java)
@@ -107,7 +108,7 @@ class SecondFragment : Fragment() {
     private fun listenForLatestPosts() {
         swiperefresh_bacheca.isRefreshing = true
         val fromId = FirebaseAuth.getInstance().uid ?: return
-        val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId")
+        val ref = FirebaseDatabase.getInstance().getReference("/posts")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
