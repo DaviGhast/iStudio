@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_message_black_24dp"
+        android:src="@drawable/ic_plus_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/swiperefresh_bacheca"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
