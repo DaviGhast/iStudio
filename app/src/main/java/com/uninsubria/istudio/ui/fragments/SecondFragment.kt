@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.messages.NewMessageActivity
+import com.uninsubria.istudio.messages.UserItem
 import com.uninsubria.istudio.models.Post
 import com.uninsubria.istudio.models.User
 import com.uninsubria.istudio.ui.NewPostActivity
@@ -140,9 +141,13 @@ class SecondFragment : Fragment() {
             }
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                dataSnapshot.getValue(Post::class.java)?.let {
-                    postsMap[dataSnapshot.key!!] = it
-                    refreshBacheca()
+                dataSnapshot.children.forEach {
+                    Log.d(TAG, it.toString())
+                    @Suppress("NestedLambdaShadowedImplicitParameter")
+                    it.getValue(Post::class.java)?.let {
+                        postsMap[dataSnapshot.key!!] = it
+                        refreshBacheca()
+                    }
                 }
             }
 
