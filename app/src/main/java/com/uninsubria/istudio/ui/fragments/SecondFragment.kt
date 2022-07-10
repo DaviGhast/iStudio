@@ -26,9 +26,6 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_second.*
 import kotlinx.android.synthetic.main.fragment_second.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class SecondFragment : Fragment() {
 
     lateinit var navController: NavController
@@ -58,7 +55,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        //recyclerview_latest_messages.adapter = adapter
+
 
         swiperefresh_bacheca.setColorSchemeColors(ContextCompat.getColor(context!!, R.color.colorAccent))
 
@@ -69,31 +66,27 @@ class SecondFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, PostActivity::class.java)
                 val row = item as PostRow
-                intent.putExtra("USER_KEY", row.postCreatorUser)
-                intent.putExtra("POST_KEY", row.postCreatorUser)
+                intent.putExtra("USER_KEY", arrayOf(row.postCreatorUser,row.post))
                 it.startActivity(intent)
             }
-            //val intent = Intent(this, ChatLogActivity::class.java)
-            //val row = item as LatestMessageRow
-            //intent.putExtra(USER_KEY, row.chatPartnerUser)
-            //startActivity(intent)
+
         }
 
 
         new_post.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, NewPostActivity::class.java)
+                intent.putExtra("USER_KEY", currentUser)
                 it.startActivity(intent)
             }
-            //val intent = Intent(this, NewMessageActivity::class.java)
-            //startActivity(intent)
+
         }
 
         view.swiperefresh_bacheca.setOnRefreshListener {
             fetchCurrentUser()
             listenForLatestPosts()
         }
-        //view.findViewById<FloatingActionButton>(R.id.new_message_fab).setOnClickListener(this)
+
     }
 
 

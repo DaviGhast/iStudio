@@ -22,6 +22,7 @@ class PostRow(val post: Post, val context: Context) : Item<ViewHolder>() {
 
     var postCreatorUser: User? = null
 
+
     override fun getLayout(): Int {
         return R.layout.post_row
     }
