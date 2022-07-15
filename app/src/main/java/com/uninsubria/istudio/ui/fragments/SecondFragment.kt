@@ -101,7 +101,6 @@ class SecondFragment : Fragment() {
 
     private fun listenForLatestPosts() {
         swiperefresh_bacheca.isRefreshing = true
-        val fromId = FirebaseAuth.getInstance().uid ?: return
         val ref = FirebaseDatabase.getInstance().getReference("/posts")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -110,31 +109,7 @@ class SecondFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d(TAG, "has children: " + dataSnapshot.hasChildren())
-                if (!dataSnapshot.hasChildren()) {
-                    swiperefresh_bacheca.isRefreshing = false
-                }
-            }
-
-        })
-
-
-        ref.addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(databaseError: DatabaseError) {
-            }
-
-            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
-            }
-
-            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                dataSnapshot.getValue(Post::class.java)?.let {
-                    postsMap[dataSnapshot.key!!] = it
-                    refreshBacheca()
-                }
-            }
-
-            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                dataSnapshot.children.forEach {
+                dataSnapshot.children.forEach(){
                     Log.d(TAG, it.toString())
                     @Suppress("NestedLambdaShadowedImplicitParameter")
                     it.getValue(Post::class.java)?.let {
@@ -142,9 +117,7 @@ class SecondFragment : Fragment() {
                         refreshBacheca()
                     }
                 }
-            }
 
-            override fun onChildRemoved(p0: DataSnapshot) {
             }
 
         })
