@@ -121,14 +121,16 @@ class NewPostActivity: AppCompatActivity() {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        if (post_checkBox.isChecked){
-            getCurrentLocation()
-        }
-        else {
-            latitude=""
-            longitude=""
-        }
 
+        post_checkBox.setOnClickListener(){
+            if (post_checkBox.isChecked){
+                getCurrentLocation()
+            }
+            else {
+                latitude=""
+                longitude=""
+            }
+        }
 
         buttonDelete.setOnClickListener(){
             delete()
