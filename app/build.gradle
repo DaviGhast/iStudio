@@ -17,6 +17,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdk 31
 
+    androidExtensions{
+        experimental = true
+    }
+
     defaultConfig {
         applicationId "com.uninsubria.istudio"
         minSdk 21
