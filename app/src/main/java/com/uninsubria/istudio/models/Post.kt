@@ -5,7 +5,9 @@ class Post(
     var title: String,
     val text: String,
     val fromId: String,
-    val timestamp: Long
+    val timestamp: Long,
+    val latitude: String,
+    val longitude: String
 ) {
-    constructor() : this("", "", "", "", -1)
+    constructor() : this("", "", "", "", -1,"","")
 }

@@ -13,8 +13,7 @@ class PostActivity: AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_post)
             maplink.setOnClickListener(){
-                val intent = Intent(this, MapsActivity::class.java)
-                startActivity(intent)
+
             }
         }
 }

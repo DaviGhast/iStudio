@@ -120,7 +120,14 @@ class NewPostActivity: AppCompatActivity() {
         setContentView(R.layout.activity_new_post)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        getCurrentLocation()
+
+        if (post_checkBox.isChecked){
+            getCurrentLocation()
+        }
+        else {
+            latitude=""
+            longitude=""
+        }
 
 
         buttonDelete.setOnClickListener(){
@@ -133,7 +140,7 @@ class NewPostActivity: AppCompatActivity() {
             val ref = db.getReference("/posts/$key")
             var post= currentUser?.let { it1 ->
                 Post(
-                    key.toString(),ettitle.text.toString(),ettext.text.toString(), it1.uid,System.currentTimeMillis()/1000)
+                    key.toString(),ettitle.text.toString(),ettext.text.toString(), it1.uid,System.currentTimeMillis()/1000,latitude,longitude)
             }
             ref.setValue(post).addOnSuccessListener {
                 Log.d(RegisterActivity.TAG, "Finally we saved the post to Firebase Database")
