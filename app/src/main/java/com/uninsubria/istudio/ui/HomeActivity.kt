@@ -20,6 +20,7 @@ import com.uninsubria.istudio.databinding.ActivityHomeBinding
 import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.models.User
 import com.uninsubria.istudio.ui.fragments.FirstFragment
+import com.uninsubria.istudio.ui.fragments.LatestMessagesFragment
 import com.uninsubria.istudio.ui.login.LoginActivity
 
 
@@ -29,8 +30,12 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         var user: User? = null
-        private val TAG = NewMessageActivity::class.java.simpleName
+        private val TAG = HomeActivity::class.java.simpleName
     }
+
+    // Bundle Data
+    private val fragmentIndex: Int
+        get() = intent.getIntExtra("fragmentIndex", 1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,9 @@ class HomeActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
         setupSmoothBottomMenu()
 
+        if (fragmentIndex==3){
+            navController.findDestination("third_fragment")
+        }
 
         val uid = FirebaseAuth.getInstance().uid ?: return
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")

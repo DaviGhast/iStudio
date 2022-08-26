@@ -14,12 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.uninsubria.istudio.R
-import com.uninsubria.istudio.messages.NewMessageActivity
-import com.uninsubria.istudio.messages.UserItem
 import com.uninsubria.istudio.models.Post
 import com.uninsubria.istudio.models.User
-import com.uninsubria.istudio.ui.NewPostActivity
-import com.uninsubria.istudio.ui.PostActivity
+import com.uninsubria.istudio.posts.NewPostActivity
+import com.uninsubria.istudio.posts.PostActivity
 import com.uninsubria.istudio.views.PostRow
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -93,7 +91,10 @@ class SecondFragment : Fragment() {
 
     private fun refreshBacheca() {
         adapter.clear()
-        postsMap.values.forEach {
+        val sortedMap: MutableMap<String, Post> = LinkedHashMap()
+        postsMap.entries.sortedByDescending { it.value.timestamp }.forEach{ sortedMap[it.key] =
+            it.value }
+        sortedMap.values.forEach {
             adapter.add(PostRow(it, requireContext()))
         }
         swiperefresh_bacheca.isRefreshing = false
@@ -103,24 +104,33 @@ class SecondFragment : Fragment() {
         swiperefresh_bacheca.isRefreshing = true
         val ref = FirebaseDatabase.getInstance().getReference("/posts")
 
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.addChildEventListener(object : ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d(TAG, "database error: " + databaseError.message)
             }
 
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataSnapshot.children.forEach(){
-                    Log.d(TAG, it.toString())
-                    @Suppress("NestedLambdaShadowedImplicitParameter")
-                    it.getValue(Post::class.java)?.let {
-                        postsMap[dataSnapshot.key!!] = it
-                        refreshBacheca()
-                    }
-                }
+            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
+            }
 
+            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                dataSnapshot.getValue(Post::class.java)?.let {
+                    postsMap[dataSnapshot.key!!] = it
+                    refreshBacheca()
+                }
+            }
+
+            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                dataSnapshot.getValue(Post::class.java)?.let {
+                    postsMap[dataSnapshot.key!!] = it
+                    refreshBacheca()
+                }
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
             }
 
         })
+
     }
 
     private fun fetchCurrentUser() {

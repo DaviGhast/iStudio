@@ -61,6 +61,13 @@ class ChatLogActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val bundle = Bundle()
+        bundle.putInt("fragmentIndex", 3)
+        finish()
+        return true
+    }
+
     private fun listenForMessages() {
         swiperefresh.isEnabled = true
         swiperefresh.isRefreshing = true

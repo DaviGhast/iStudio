@@ -16,6 +16,7 @@ import com.uninsubria.istudio.messages.ChatLogActivity
 import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.messages.NewMessageActivity.Companion.USER_KEY
 import com.uninsubria.istudio.models.ChatMessage
+import com.uninsubria.istudio.models.Post
 import com.uninsubria.istudio.models.User
 import com.uninsubria.istudio.views.LatestMessageRow
 import com.xwray.groupie.GroupAdapter
@@ -101,7 +102,10 @@ class LatestMessagesFragment : Fragment(), View.OnClickListener {
 
     private fun refreshRecyclerViewMessages() {
         adapter.clear()
-        latestMessagesMap.values.forEach {
+        val sortedMap: MutableMap<String, ChatMessage> = LinkedHashMap()
+        latestMessagesMap.entries.sortedByDescending { it.value.timestamp }.forEach{ sortedMap[it.key] =
+            it.value }
+        sortedMap.values.forEach {
             adapter.add(LatestMessageRow(it, requireContext()))
         }
         swiperefresh.isRefreshing = false

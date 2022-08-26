@@ -1,23 +1,23 @@
-package com.uninsubria.istudio.ui
+package com.uninsubria.istudio.posts
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.models.Post
-import com.uninsubria.istudio.models.User
 import kotlinx.android.synthetic.main.activity_post.*
-import java.util.*
 
 
 class PostActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
 
         val array = intent.getParcelableArrayExtra("USER_KEY")
         val mypost: Post = array?.get(1) as Post

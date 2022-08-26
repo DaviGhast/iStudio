@@ -4,12 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
-import com.uninsubria.istudio.R
-import com.uninsubria.istudio.models.User
-import com.uninsubria.istudio.views.BigImageDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.uninsubria.istudio.R
+import com.uninsubria.istudio.models.User
+import com.uninsubria.istudio.ui.HomeActivity
+import com.uninsubria.istudio.views.BigImageDialog
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -51,6 +52,13 @@ class NewMessageActivity : AppCompatActivity() {
         swiperefresh.setOnRefreshListener {
             fetchUsers()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val bundle = Bundle()
+        bundle.putInt("fragmentIndex", 3)
+        finish()
+        return true
     }
 
     private fun fetchUsers() {

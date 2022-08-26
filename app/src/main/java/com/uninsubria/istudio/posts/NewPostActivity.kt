@@ -1,4 +1,4 @@
-package com.uninsubria.istudio.ui
+package com.uninsubria.istudio.posts
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,15 +18,14 @@ import com.uninsubria.istudio.R
 import com.uninsubria.istudio.messages.NewMessageActivity
 import com.uninsubria.istudio.models.Post
 import com.uninsubria.istudio.models.User
+import com.uninsubria.istudio.ui.HomeActivity
 import com.uninsubria.istudio.ui.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_new_post.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.post_row.*
 
 class NewPostActivity: AppCompatActivity() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var longitude:String
-    lateinit var latitude:String
+    private lateinit var longitude:String
+    private lateinit var latitude:String
 
     private val currentUser: User?
         get() = intent.getParcelableExtra("USER_KEY")
@@ -79,7 +77,8 @@ class NewPostActivity: AppCompatActivity() {
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this,
             arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION),
-        PERMISSION_REQUEST_ACCESS_LOCATION)
+        PERMISSION_REQUEST_ACCESS_LOCATION
+        )
     }
 
     companion object{
@@ -120,7 +119,8 @@ class NewPostActivity: AppCompatActivity() {
         setContentView(R.layout.activity_new_post)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-
+        latitude=""
+        longitude=""
 
         post_checkBox.setOnClickListener(){
             if (post_checkBox.isChecked){
@@ -134,6 +134,11 @@ class NewPostActivity: AppCompatActivity() {
 
         buttonDelete.setOnClickListener(){
             delete()
+            val intent = Intent(this, HomeActivity::class.java)
+            val bundle = Bundle()
+            bundle.putInt("fragmentIndex", 2)
+            startActivity(intent)
+            overridePendingTransition(R.anim.enter, R.anim.exit)
         }
 
         buttonSend.setOnClickListener(){
@@ -146,12 +151,17 @@ class NewPostActivity: AppCompatActivity() {
             }
             ref.setValue(post).addOnSuccessListener {
                 Log.d(RegisterActivity.TAG, "Finally we saved the post to Firebase Database")
+                Toast.makeText(this, "Finally we saved the post to Firebase Database", Toast.LENGTH_SHORT).show()
                 delete()
             }
                 .addOnFailureListener {
                     Log.d(RegisterActivity.TAG, "Failed to set value to database: ${it.message}")
                 }
-
+            val intent = Intent(this, HomeActivity::class.java)
+            val bundle = Bundle()
+            bundle.putInt("fragmentIndex", 2)
+            startActivity(intent)
+            overridePendingTransition(R.anim.enter, R.anim.exit)
         }
 
     }
