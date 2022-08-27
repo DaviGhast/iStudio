@@ -47,6 +47,9 @@ class HomeActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
         setupSmoothBottomMenu()
 
+        if (fragmentIndex==2){
+            navController.findDestination("second_fragment")
+        }
         if (fragmentIndex==3){
             navController.findDestination("third_fragment")
         }

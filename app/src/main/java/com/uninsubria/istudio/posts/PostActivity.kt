@@ -48,4 +48,11 @@ class PostActivity: AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val bundle = Bundle()
+        bundle.putInt("fragmentIndex", 2)
+        finish()
+        return true
+    }
+
 }
