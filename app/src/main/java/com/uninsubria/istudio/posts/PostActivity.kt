@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.uninsubria.istudio.R
 import com.uninsubria.istudio.models.Post
+import com.uninsubria.istudio.ui.HomeActivity
+import com.uninsubria.istudio.ui.fragments.SecondFragment
 import kotlinx.android.synthetic.main.activity_post.*
 
 
@@ -38,7 +40,10 @@ class PostActivity: AppCompatActivity() {
             mapIntent.setPackage("com.google.android.apps.maps")
             mapIntent.resolveActivity(packageManager)?.let { startActivity(mapIntent) }
         }
+        returnbutton.setOnClickListener(){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
-
 
 }
