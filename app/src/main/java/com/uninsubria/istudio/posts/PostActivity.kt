@@ -28,14 +28,16 @@ class PostActivity: AppCompatActivity() {
 
         val latitude = mypost.latitude
         val longitude = mypost.longitude
+        val label = ""
 
         if (latitude==""||longitude==""){
             maplink.isVisible = !maplink.isVisible
         }
         else{}
 
+
         maplink.setOnClickListener(){
-            val gmmIntentUri = Uri.parse("geo:$latitude,$longitude")
+            val gmmIntentUri = Uri.parse("geo:0,0?q=$latitude,$longitude")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             mapIntent.resolveActivity(packageManager)?.let { startActivity(mapIntent) }
