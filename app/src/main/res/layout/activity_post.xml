@@ -9,48 +9,69 @@
         android:id="@+id/titleap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:gravity="center"
         android:text="Title"
         android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/postusername" />
 
     <TextView
         android:id="@+id/textap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="129dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="160dp"
         android:text="Text"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@id/maplink"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleap" />
 
-    <TextView
+    <Button
         android:id="@+id/maplink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        android:text="SEE POSITION"
-        android:textColor="#0000ff"
-        app:layout_constraintTop_toBottomOf="@id/textap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/returnbutton"
-        tools:layout_editor_absoluteY="643dp" />
-
-    <Button
-        android:id="@+id/returnbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RETURN"
+        android:text="See Position"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maplink" />
+        app:layout_constraintTop_toBottomOf="@id/textap" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userprofileimage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/no_image2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/postusername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Username"
+        android:textColor="@android:color/black"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/userprofileimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userprofileimage"
+        app:layout_constraintTop_toTopOf="@+id/userprofileimage"
+        app:layout_constraintVertical_bias="0.312" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
