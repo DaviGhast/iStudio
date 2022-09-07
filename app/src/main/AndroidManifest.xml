@@ -34,11 +34,11 @@
             tools:ignore="Instantiatable" />
         <activity
             android:name=".ui.HomeActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".messages.NewMessageActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             tools:ignore="Instantiatable">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,7 +46,7 @@
         </activity>
         <activity
             android:name=".messages.ChatLogActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             tools:ignore="Instantiatable">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -54,7 +54,7 @@
         </activity>
         <activity
             android:name=".posts.NewPostActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             tools:ignore="Instantiatable">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -62,7 +62,7 @@
         </activity>
         <activity
             android:name=".posts.PostActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             tools:ignore="Instantiatable">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
