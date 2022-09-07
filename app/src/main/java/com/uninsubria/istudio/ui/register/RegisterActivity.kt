@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             performRegistration()
         }
 
-        already_have_account_text_view.setOnClickListener {
+        login.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.enter, R.anim.exit)

@@ -13,15 +13,28 @@
         android:background="@color/colorPrimary"
         tools:context=".ui.register.RegisterActivity">
 
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:text="Login Here"
+            android:textColor="#FF0000FF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/register_button_register"
+            app:layout_constraintStart_toStartOf="@+id/register_button_register"
+            app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
+
         <EditText
             android:id="@+id/name_edittext_register"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/rounded_edittext_register_login"
             android:ems="10"
             android:hint="Name"
@@ -29,7 +42,7 @@
             android:paddingLeft="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectphoto_button_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/selectphoto_button_register" />
 
         <EditText
             android:id="@+id/email_edittext_register"
@@ -43,7 +56,7 @@
             android:paddingLeft="16dp"
             app:layout_constraintEnd_toEndOf="@+id/name_edittext_register"
             app:layout_constraintStart_toStartOf="@+id/name_edittext_register"
-            app:layout_constraintTop_toBottomOf="@+id/name_edittext_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/name_edittext_register" />
 
         <EditText
             android:id="@+id/password_edittext_register"
@@ -57,7 +70,7 @@
             android:paddingLeft="16dp"
             app:layout_constraintEnd_toEndOf="@+id/email_edittext_register"
             app:layout_constraintStart_toStartOf="@+id/email_edittext_register"
-            app:layout_constraintTop_toBottomOf="@+id/email_edittext_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/email_edittext_register" />
 
         <Button
             android:id="@+id/register_button_register"
@@ -71,18 +84,18 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/password_edittext_register"
             app:layout_constraintStart_toStartOf="@+id/password_edittext_register"
-            app:layout_constraintTop_toBottomOf="@+id/password_edittext_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/password_edittext_register" />
 
 
         <TextView
             android:id="@+id/already_have_account_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Already have an account?"
             android:textColor="@android:color/white"
             android:textSize="16sp"
@@ -90,39 +103,39 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/register_button_register"
             app:layout_constraintStart_toStartOf="@+id/register_button_register"
-            app:layout_constraintTop_toBottomOf="@+id/register_button_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
 
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/loading_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:visibility="gone"
             app:indicatorColor="@color/colorAccent"
             app:indicatorName="SemiCircleSpinIndicator"
             app:layout_constraintEnd_toEndOf="@+id/register_button_register"
             app:layout_constraintStart_toStartOf="@+id/register_button_register"
-            app:layout_constraintTop_toBottomOf="@+id/register_button_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
 
         <Button
             android:id="@+id/selectphoto_button_register"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/rounded_select_photo_button"
             android:text="Select Photo"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/selectphoto_imageview_register"
@@ -131,7 +144,7 @@
             app:civ_border_width="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
             app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"
-            app:layout_constraintTop_toTopOf="@+id/selectphoto_button_register"/>
+            app:layout_constraintTop_toTopOf="@+id/selectphoto_button_register" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
