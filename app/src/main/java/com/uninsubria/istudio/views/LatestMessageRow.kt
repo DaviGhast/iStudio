@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.latest_message_row.view.*
-
+import kotlinx.android.synthetic.main.post_row.view.*
 
 
 class LatestMessageRow(val chatMessage: ChatMessage, val context: Context) : Item<ViewHolder>() {
@@ -49,20 +49,29 @@ class LatestMessageRow(val chatMessage: ChatMessage, val context: Context) : Ite
                 viewHolder.itemView.username_textview_latest_message.text = chatPartnerUser?.name
                 viewHolder.itemView.latest_msg_time.text = DateUtils.getFormattedTime(chatMessage.timestamp)
 
+                val requestOptions = RequestOptions().placeholder(R.drawable.no_image2)
+
                 if (!chatPartnerUser?.profileImageUrl?.isEmpty()!!) {
-                    val requestOptions = RequestOptions().placeholder(R.drawable.no_image2)
 
                     Glide.with(viewHolder.itemView.imageview_latest_message.context)
                         .load(chatPartnerUser?.profileImageUrl)
                         .apply(requestOptions)
                         .into(viewHolder.itemView.imageview_latest_message)
 
-                    viewHolder.itemView.imageview_latest_message.setOnClickListener {
-                        BigImageDialog.newInstance(chatPartnerUser?.profileImageUrl!!).show((context as Activity).fragmentManager
-                            , "")
-                    }
+                } else {
+
+                    Glide.with(viewHolder.itemView.imageview_latest_message.context)
+                        .load(R.drawable.no_image2)
+                        .apply(requestOptions)
+                        .into(viewHolder.itemView.imageview_latest_message)
 
                 }
+
+                viewHolder.itemView.imageview_latest_message.setOnClickListener {
+                    BigImageDialog.newInstance(chatPartnerUser?.profileImageUrl!!).show((context as Activity).fragmentManager
+                        , "")
+                }
+
             }
 
         })
