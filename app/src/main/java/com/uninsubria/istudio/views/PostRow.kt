@@ -42,20 +42,29 @@ class PostRow(val post: Post, val context: Context) : Item<ViewHolder>() {
                 viewHolder.itemView.post_text.text = post.text
                 viewHolder.itemView.post_time.text = DateUtils.getFormattedTime(post.timestamp)
 
+                val requestOptions = RequestOptions().placeholder(R.drawable.no_image2)
+
                 if (!postCreatorUser?.profileImageUrl?.isEmpty()!!) {
-                    val requestOptions = RequestOptions().placeholder(R.drawable.no_image2)
 
                     Glide.with(viewHolder.itemView.imageview_post.context)
                         .load(postCreatorUser?.profileImageUrl)
                         .apply(requestOptions)
                         .into(viewHolder.itemView.imageview_post)
 
-                    viewHolder.itemView.imageview_post.setOnClickListener {
-                        BigImageDialog.newInstance(postCreatorUser?.profileImageUrl!!).show((context as Activity).fragmentManager
-                            , "")
-                    }
+                } else {
+
+                    Glide.with(viewHolder.itemView.imageview_post.context)
+                        .load(R.drawable.no_image2)
+                        .apply(requestOptions)
+                        .into(viewHolder.itemView.imageview_post)
 
                 }
+
+                viewHolder.itemView.imageview_post.setOnClickListener {
+                    BigImageDialog.newInstance(postCreatorUser?.profileImageUrl!!).show((context as Activity).fragmentManager
+                        , "")
+                }
+
             }
 
         })
